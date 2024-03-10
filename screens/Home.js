@@ -28,6 +28,10 @@ const vendorDataNearby = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "New",
+      bulb_color: "#32CD32",
+    },
   },
   {
     shop_name: "Vorta Vat",
@@ -37,6 +41,10 @@ const vendorDataNearby = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Closed",
+      bulb_color: "red",
+    },
   },
   {
     shop_name: "Niribili",
@@ -46,6 +54,10 @@ const vendorDataNearby = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Kasem Food Corner",
@@ -55,6 +67,10 @@ const vendorDataNearby = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Otithi Hotel",
@@ -64,6 +80,10 @@ const vendorDataNearby = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
 ];
 const vendorDataInTown = [
@@ -75,6 +95,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Vojonbari",
@@ -84,6 +108,7 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: null,
   },
   {
     shop_name: "Banaliana",
@@ -93,6 +118,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Vorta Vat",
@@ -102,6 +131,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Niribili",
@@ -111,6 +144,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Kasem Food Corner",
@@ -120,6 +157,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
   {
     shop_name: "Otithi Hotel",
@@ -129,6 +170,10 @@ const vendorDataInTown = [
       latitude: null,
     },
     cover_img: null,
+    status: {
+      name: "Active",
+      bulb_color: "green",
+    },
   },
 ];
 
@@ -422,43 +467,111 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
               }}
             >
               <View>
-                <Image
+                <ImageBackground
                   source={null}
-                  style={{
-                    height: 158,
-                    width: 234,
-                    borderRadius: 12,
+                  style={[
+                    {
+                      height: 158,
+                      width: 234,
+                      borderRadius: 12,
 
-                    borderWidth: 2,
-                    borderColor: "#fff",
-                    marginBottom: 6,
-                  }}
-                />
+                      borderWidth: 2,
+                      borderColor: "#fff",
+                      marginBottom: 6,
+                    },
+                  ]}
+                >
+                  {item?.status && (
+                    <View
+                      style={[
+                        {
+                          height: 22,
+                          width: 50,
+                          backgroundColor: "#fff",
+                          margin: 4,
+                          borderRadius: 8,
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          gap: 3,
+                        },
+                        {
+                          shadowColor: "#171717",
+                          shadowOffset: { width: -2, height: 4 },
+                          shadowOpacity: 0.1,
+                          shadowRadius: 4,
+                          elevation: 20,
+                        },
+                      ]}
+                    >
+                      <View
+                        style={{
+                          height: 8,
+                          width: 8,
+                          backgroundColor: item?.status?.bulb_color || "red",
+                          borderRadius: 100,
+                        }}
+                      />
+                      <SemiBoldText style={{ fontSize: 12 }}>
+                        {item?.status?.name}
+                      </SemiBoldText>
+                    </View>
+                  )}
+                  {/* <View style={{ marginTop: 94, marginLeft: 170 }}>
+                    <ImageBackground
+                      source={intersectRating}
+                      style={{
+                        height: 60,
+                        width: 60,
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "flex-end",
+                        padding: 6,
+                      }}
+                    >
+                      <DGORegularText style={{ color: "#fff", fontSize: 11 }}>
+                        1:00pm
+                      </DGORegularText>
+                      <DGORegularText style={{ color: "#fff", fontSize: 11 }}>
+                        8:00pm
+                      </DGORegularText>
+                    </ImageBackground>
+                  </View> */}
+                </ImageBackground>
+              </View>
 
-                <View style={{ marginTop: -57, marginLeft: 179 }}>
-                  <ImageBackground
-                    source={intersectRating}
-                    style={{
-                      height: 55,
-                      width: 56,
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <DGORegularText style={{ color: "#fff" }}>
+              <View
+                style={{
+                  paddingHorizontal: 6,
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <View>
+                  <SemiBoldText style={{ fontSize: 14 }}>
+                    {item?.shop_name}
+                  </SemiBoldText>
+                  <RegularText style={{ fontSize: 12 }}>
+                    Delievery Fee: BDT10/Meal
+                  </RegularText>
+                </View>
+
+                {/* <SemiBoldText style={{ fontSize: 20 }}>1.9 mi</SemiBoldText> */}
+
+                <View
+                  style={{ flexDirection: "column", alignItems: "flex-end" }}
+                >
+                  <RegularText style={{ fontSize: 12 }}>Rating</RegularText>
+                  <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <DGORegularText style={{ fontSize: 12 }}>
                       {item?.rating}
                     </DGORegularText>
-                  </ImageBackground>
+                    <RegularText style={{ fontSize: 12, marginTop: 2 }}>
+                      {" "}
+                      (121)
+                    </RegularText>
+                  </View>
                 </View>
-              </View>
-              <View style={{ marginLeft: 6 }}>
-                <SemiBoldText style={{ fontSize: 14 }}>
-                  {item?.shop_name}
-                </SemiBoldText>
-                <RegularText style={{ fontSize: 12 }}>
-                  Delievery Fee: BDT10/Meal
-                </RegularText>
               </View>
             </TouchableOpacity>
           );
