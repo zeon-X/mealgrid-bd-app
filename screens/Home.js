@@ -27,7 +27,8 @@ const vendorDataNearby = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1625772415023-66f9b62a12b4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "New",
       bulb_color: "#32CD32",
@@ -40,7 +41,8 @@ const vendorDataNearby = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1652954008429-ce394eacbd7f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Closed",
       bulb_color: "red",
@@ -53,10 +55,11 @@ const vendorDataNearby = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1582576163090-09d3b6f8a969?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -66,10 +69,11 @@ const vendorDataNearby = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1598514982901-ae62764ae75e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -79,10 +83,11 @@ const vendorDataNearby = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
 ];
@@ -94,10 +99,11 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1579619002916-88cd4c81a70c?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -107,7 +113,8 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1616645258469-ec681c17f3ee?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: null,
   },
   {
@@ -117,10 +124,11 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -130,10 +138,11 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1596560548464-f010549b84d7?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -143,10 +152,11 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1472&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -156,10 +166,11 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1450&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
   },
   {
@@ -169,11 +180,45 @@ const vendorDataInTown = [
       longitude: null,
       latitude: null,
     },
-    cover_img: null,
+    cover_img:
+      "https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
       name: "Active",
-      bulb_color: "green",
+      bulb_color: "#32CD32",
     },
+  },
+];
+const storyData = [
+  {
+    title: "Easy Manage",
+    img: "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1420&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    nav_link: null,
+  },
+  {
+    title: "Healthy",
+    img: "https://images.unsplash.com/photo-1528712306091-ed0763094c98?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    nav_link: null,
+  },
+
+  {
+    title: "Fast Delievery",
+    img: "https://images.unsplash.com/photo-1615719413546-198b25453f85?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Zm9vZCUyMGRlbGl2ZXJ5fGVufDB8MXwwfHx8MA%3D%3D",
+    nav_link: null,
+  },
+  {
+    title: "Convinient",
+    img: "https://images.unsplash.com/photo-1581349485608-9469926a8e5e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    nav_link: null,
+  },
+  {
+    title: "Healthy",
+    img: "https://images.unsplash.com/photo-1556761223-4c4282c73f77?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    nav_link: null,
+  },
+  {
+    title: "Easy Manage",
+    img: "https://images.unsplash.com/photo-1507638940746-7b17d6b55b8f?q=80&w=1432&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    nav_link: null,
   },
 ];
 
@@ -202,7 +247,11 @@ export const Home = ({ navigation }) => {
         style={{ marginBottom: 20, paddingHorizontal: 20 }}
       />
 
-      <StoryBar width={width} style={{ marginBottom: 40 }} />
+      <StoryBar
+        width={width}
+        style={{ marginBottom: 40 }}
+        storyData={storyData}
+      />
 
       <LoadVendor
         width={width}
@@ -341,49 +390,7 @@ const SearchBar = ({ width, style }) => {
   );
 };
 
-const StoryBar = ({ width, style }) => {
-  const storyData = [
-    {
-      title: "Healthy",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Easy Manage",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Fast Delievery",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Convinient",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Healthy",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Easy Manage",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Fast Delievery",
-      img: null,
-      nav_link: null,
-    },
-    {
-      title: "Convinient",
-      img: null,
-      nav_link: null,
-    },
-  ];
+const StoryBar = ({ width, style, storyData }) => {
   return (
     <View
       style={[
@@ -415,7 +422,7 @@ const StoryBar = ({ width, style }) => {
               }}
             >
               <Image
-                source={null}
+                source={{ uri: item?.img }}
                 style={{
                   height: 72,
                   width: 72,
@@ -468,18 +475,20 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
             >
               <View>
                 <ImageBackground
-                  source={null}
+                  source={{ uri: item?.cover_img }}
                   style={[
                     {
                       height: 158,
                       width: 234,
-                      borderRadius: 12,
 
-                      borderWidth: 2,
-                      borderColor: "#fff",
                       marginBottom: 6,
                     },
                   ]}
+                  imageStyle={{
+                    borderRadius: 12,
+                    borderWidth: 2,
+                    borderColor: "#fff",
+                  }}
                 >
                   {item?.status && (
                     <View
