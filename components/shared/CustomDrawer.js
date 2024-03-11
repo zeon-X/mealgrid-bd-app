@@ -1,19 +1,14 @@
-import React from "react";
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState } from "react";
+import { View, Image, TouchableOpacity } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { BoldText, MediumText, RegularText, SemiBoldText } from "../text";
+import { BoldText, RegularText, SemiBoldText } from "../text";
 import { MealGridColors } from "../../assets/values/Colors";
 import { DrawerNavData } from "../../assets/values/DrawerNavData";
 import { logout_icon } from "../../assets/index.icon";
+import { OpenModalToNav } from "./OpenModalToNav";
 
 /**
  * @author
@@ -21,6 +16,9 @@ import { logout_icon } from "../../assets/index.icon";
  **/
 
 export const CustomDrawer = (props) => {
+  const [route, setRoute] = useState(null);
+  const [visible, setVisible] = useState(false);
+
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView>
@@ -28,6 +26,7 @@ export const CustomDrawer = (props) => {
           style={{
             padding: 20,
             backgroundColor: MealGridColors?.primary,
+            marginTop: -4,
           }}
         >
           <Image
@@ -75,6 +74,10 @@ export const CustomDrawer = (props) => {
                   alignItems: "center",
                   gap: 5,
                 }}
+                onPress={() => {
+                  setRoute(nav);
+                  setVisible(true);
+                }}
               >
                 <Image
                   source={nav?.icon}
@@ -99,7 +102,16 @@ export const CustomDrawer = (props) => {
         </View>
       </DrawerContentScrollView>
 
-      <View style={{ padding: 12, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <OpenModalToNav
+        visible={visible}
+        onRequestClose={() => {
+          setVisible(false);
+          setRoute(null);
+        }}
+        route={route}
+      />
+
+      <View style={{ padding: 16, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity
           onPress={() => {}}
           style={{
@@ -107,6 +119,7 @@ export const CustomDrawer = (props) => {
             flexDirection: "row",
             alignItems: "center",
             gap: 5,
+            paddingLeft: 4,
           }}
         >
           {/* <Ionicons name="exit-outline" size={22} /> */}

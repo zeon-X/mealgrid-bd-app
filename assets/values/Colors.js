@@ -5,7 +5,7 @@ export const MealGridColors = {
 
   primaryRed: "#FF3624",
   offWhite_1: "#EEEEEE",
-  offWhite_2: "#F9F9F9",
+  offWhite_2: "#F8F8F8",
   btnbG: "#F5F5F5",
   white: "#FFFFFF",
   black: "#000000",

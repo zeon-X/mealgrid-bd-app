@@ -3,6 +3,8 @@ import intersectRating from "./icons/IntersectRatingCard.png";
 import cart_icon from "./icons/cart.png";
 import navbar_icon from "./icons/navbar.png";
 import search_icon from "./icons/search.png";
+import close_icon from "./icons/close_cross.png";
+import edit_icon from "./icons/edit.png";
 
 import address_icon from "./icons/address.png";
 import help_center_icon from "./icons/help_center.png";
@@ -25,4 +27,6 @@ export {
   profile_icon,
   settings_icon,
   voucher_icon,
+  edit_icon,
+  close_icon,
 };

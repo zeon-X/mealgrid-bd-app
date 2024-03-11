@@ -10,7 +10,7 @@ import {
   View,
 } from "react-native";
 import { BoldText, RegularText, SemiBoldText } from "../components/text";
-import { MealGridColors } from "../assets/Values/Colors";
+import { MealGridColors } from "../assets/values/Colors";
 import {
   cart_icon,
   intersectRating,
@@ -26,19 +26,24 @@ import { DGORegularText } from "../components/text/DelaGothicOne";
 
 const vendorDataNearby = [
   {
-    shop_name: "Banaliana",
-    rating: 3.2,
+    shop_name: "Niribili",
+    rating: 2.4,
     location: {
       longitude: null,
       latitude: null,
     },
     cover_img:
-      "https://images.unsplash.com/photo-1625772415023-66f9b62a12b4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1582576163090-09d3b6f8a969?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
-      name: "New",
+      name: "Active",
       bulb_color: "#32CD32",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
+
   {
     shop_name: "Vorta Vat",
     rating: 4.2,
@@ -52,19 +57,27 @@ const vendorDataNearby = [
       name: "Closed",
       bulb_color: "red",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
-    shop_name: "Niribili",
-    rating: 2.4,
+    shop_name: "Bangaliana",
+    rating: 3.2,
     location: {
       longitude: null,
       latitude: null,
     },
     cover_img:
-      "https://images.unsplash.com/photo-1582576163090-09d3b6f8a969?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1625772415023-66f9b62a12b4?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: {
-      name: "Active",
+      name: "New",
       bulb_color: "#32CD32",
+    },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
     },
   },
   {
@@ -80,6 +93,10 @@ const vendorDataNearby = [
       name: "Active",
       bulb_color: "#32CD32",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
     shop_name: "Otithi Hotel",
@@ -93,6 +110,10 @@ const vendorDataNearby = [
     status: {
       name: "Active",
       bulb_color: "#32CD32",
+    },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
     },
   },
 ];
@@ -110,6 +131,10 @@ const vendorDataInTown = [
       name: "Active",
       bulb_color: "#32CD32",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
     shop_name: "Vojonbari",
@@ -121,6 +146,10 @@ const vendorDataInTown = [
     cover_img:
       "https://images.unsplash.com/photo-1616645258469-ec681c17f3ee?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     status: null,
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
     shop_name: "Banaliana",
@@ -134,6 +163,10 @@ const vendorDataInTown = [
     status: {
       name: "Active",
       bulb_color: "#32CD32",
+    },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
     },
   },
   {
@@ -149,6 +182,10 @@ const vendorDataInTown = [
       name: "Active",
       bulb_color: "#32CD32",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
     shop_name: "Niribili",
@@ -162,6 +199,10 @@ const vendorDataInTown = [
     status: {
       name: "Active",
       bulb_color: "#32CD32",
+    },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
     },
   },
   {
@@ -177,6 +218,10 @@ const vendorDataInTown = [
       name: "Active",
       bulb_color: "#32CD32",
     },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
+    },
   },
   {
     shop_name: "Otithi Hotel",
@@ -190,6 +235,10 @@ const vendorDataInTown = [
     status: {
       name: "Active",
       bulb_color: "#32CD32",
+    },
+    delivery: {
+      launch: "1.00pm",
+      dinner: "8.00pm",
     },
   },
 ];
@@ -237,24 +286,26 @@ export const Home = ({ navigation }) => {
         marginTop: StatusBar.currentHeight,
       }}
     >
-      <HomeHeader
-        width={width}
-        navigation={navigation}
-        style={{
-          marginBottom: 20,
-          width: width,
-          paddingHorizontal: 24,
-          marginTop: 24,
-        }}
-      />
-      <SearchBar
-        width={width}
-        style={{ marginBottom: 20, paddingHorizontal: 20 }}
-      />
+      <View style={{ backgroundColor: MealGridColors.primary }}>
+        <HomeHeader
+          width={width}
+          navigation={navigation}
+          style={{
+            marginBottom: 20,
+            width: width,
+            paddingHorizontal: 24,
+            marginTop: 24,
+          }}
+        />
+        <SearchBar
+          width={width}
+          style={{ marginBottom: 20, paddingHorizontal: 20 }}
+        />
+      </View>
 
       <StoryBar
         width={width}
-        style={{ marginBottom: 40 }}
+        style={{ marginBottom: 32, marginTop: 18 }}
         storyData={storyData}
       />
 
@@ -305,6 +356,7 @@ const HomeHeader = ({ navigation, width, style }) => {
           style={{
             height: 32,
             width: 32,
+            tintColor: MealGridColors.white,
           }}
         />
       </TouchableOpacity>
@@ -315,8 +367,10 @@ const HomeHeader = ({ navigation, width, style }) => {
           width: (5 / 8) * width,
         }}
       >
-        <SemiBoldText style={{ fontSize: 18 }}>Deliver to</SemiBoldText>
-        <RegularText style={{ fontSize: 14 }}>
+        <SemiBoldText style={{ fontSize: 18, color: MealGridColors.white }}>
+          Deliver to
+        </SemiBoldText>
+        <RegularText style={{ fontSize: 14, color: MealGridColors.white }}>
           Bholahut palace, Baliapukur choto bot-tola..
         </RegularText>
       </TouchableOpacity>
@@ -337,6 +391,7 @@ const HomeHeader = ({ navigation, width, style }) => {
             style={{
               height: 32,
               width: 32,
+              tintColor: MealGridColors.white,
               // borderWidth: 1,
               // borderColor: "green",
             }}
@@ -388,6 +443,8 @@ const SearchBar = ({ width, style }) => {
           style={{
             height: 26,
             width: 26,
+            tintColor: MealGridColors.gray_time,
+            // tintColor: MealGridColors.primary,
             // borderWidth: 1,
             // borderColor: "red",
           }}
@@ -438,8 +495,8 @@ const StoryBar = ({ width, style, storyData }) => {
                   width: 72,
                   borderRadius: 100,
 
-                  borderWidth: 2,
-                  borderColor: "#fff",
+                  borderWidth: 2.5,
+                  borderColor: MealGridColors.primary,
                   marginBottom: 6,
                 }}
               />
@@ -492,6 +549,8 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
                       width: 234,
 
                       marginBottom: 6,
+                      flexDirection: "row",
+                      justifyContent: "space-between",
                     },
                   ]}
                   imageStyle={{
@@ -500,14 +559,14 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
                     borderColor: "#fff",
                   }}
                 >
-                  {item?.status && (
+                  {item?.status ? (
                     <View
                       style={[
                         {
-                          height: 22,
-                          width: 50,
+                          height: 20,
+                          width: 48,
                           backgroundColor: "#fff",
-                          margin: 4,
+                          margin: 5,
                           borderRadius: 8,
                           flexDirection: "row",
                           justifyContent: "center",
@@ -525,37 +584,39 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
                     >
                       <View
                         style={{
-                          height: 8,
-                          width: 8,
+                          height: 6,
+                          width: 6,
                           backgroundColor: item?.status?.bulb_color || "red",
                           borderRadius: 100,
                         }}
                       />
-                      <SemiBoldText style={{ fontSize: 12 }}>
+                      <SemiBoldText style={{ fontSize: 11 }}>
                         {item?.status?.name}
                       </SemiBoldText>
                     </View>
+                  ) : (
+                    <View />
                   )}
-                  {/* <View style={{ marginTop: 94, marginLeft: 170 }}>
+                  <View style={{ marginTop: 102, marginRight: 2 }}>
                     <ImageBackground
                       source={intersectRating}
                       style={{
-                        height: 60,
-                        width: 60,
+                        height: 54,
+                        width: 54,
                         flexDirection: "column",
                         justifyContent: "center",
                         alignItems: "flex-end",
                         padding: 6,
                       }}
                     >
-                      <DGORegularText style={{ color: "#fff", fontSize: 11 }}>
-                        1:00pm
+                      <DGORegularText style={{ fontSize: 20, color: "#fff" }}>
+                        {item?.rating}
                       </DGORegularText>
-                      <DGORegularText style={{ color: "#fff", fontSize: 11 }}>
-                        8:00pm
-                      </DGORegularText>
+                      <RegularText style={{ fontSize: 12, color: "#fff" }}>
+                        Out of 5
+                      </RegularText>
                     </ImageBackground>
-                  </View> */}
+                  </View>
                 </ImageBackground>
               </View>
 
@@ -567,11 +628,11 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
                 }}
               >
                 <View>
-                  <SemiBoldText style={{ fontSize: 14 }}>
+                  <BoldText style={{ fontSize: 14 }}>
                     {item?.shop_name}
-                  </SemiBoldText>
+                  </BoldText>
                   <RegularText style={{ fontSize: 12 }}>
-                    Delievery Fee: BDT10/Meal
+                    Rider Fee: BDT10/Meal
                   </RegularText>
                 </View>
 
@@ -580,16 +641,15 @@ const LoadVendor = ({ width, style, caption, vendorData }) => {
                 <View
                   style={{ flexDirection: "column", alignItems: "flex-end" }}
                 >
-                  <RegularText style={{ fontSize: 12 }}>Rating</RegularText>
-                  <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <DGORegularText style={{ fontSize: 12 }}>
-                      {item?.rating}
-                    </DGORegularText>
-                    <RegularText style={{ fontSize: 12, marginTop: 2 }}>
-                      {" "}
-                      (121)
-                    </RegularText>
-                  </View>
+                  <RegularText style={{ fontSize: 12 }}>
+                    Delivery Time
+                  </RegularText>
+
+                  <DGORegularText style={{ fontSize: 12 }}>
+                    {item?.delivery?.launch}
+                    {" | "}
+                    {item?.delivery?.dinner}
+                  </DGORegularText>
                 </View>
               </View>
             </TouchableOpacity>
