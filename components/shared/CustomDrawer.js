@@ -13,6 +13,7 @@ import {
 import { BoldText, MediumText, RegularText, SemiBoldText } from "../text";
 import { MealGridColors } from "../../assets/values/Colors";
 import { DrawerNavData } from "../../assets/values/DrawerNavData";
+import { logout_icon } from "../../assets/index.icon";
 
 /**
  * @author
@@ -30,7 +31,7 @@ export const CustomDrawer = (props) => {
           }}
         >
           <Image
-            source={require("../../assets/images/user-profile.jpg")}
+            source={require("../../assets/images/user.jpg")}
             style={{
               height: 80,
               width: 80,
@@ -75,6 +76,15 @@ export const CustomDrawer = (props) => {
                   gap: 5,
                 }}
               >
+                <Image
+                  source={nav?.icon}
+                  style={{
+                    height: 22,
+                    width: 22,
+                    // borderWidth: 1,
+                    // borderColor: "green",
+                  }}
+                />
                 <RegularText
                   style={{
                     fontSize: 15,
@@ -89,7 +99,7 @@ export const CustomDrawer = (props) => {
         </View>
       </DrawerContentScrollView>
 
-      <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: "#ccc" }}>
+      <View style={{ padding: 12, borderTopWidth: 1, borderTopColor: "#ccc" }}>
         <TouchableOpacity
           onPress={() => {}}
           style={{
@@ -100,6 +110,15 @@ export const CustomDrawer = (props) => {
           }}
         >
           {/* <Ionicons name="exit-outline" size={22} /> */}
+          <Image
+            source={logout_icon}
+            style={{
+              height: 22,
+              width: 22,
+              // borderWidth: 1,
+              // borderColor: "green",
+            }}
+          />
           <RegularText
             style={{
               fontSize: 15,

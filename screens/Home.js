@@ -327,8 +327,8 @@ const HomeHeader = ({ navigation, width, style }) => {
           width: 32,
           justifyContent: "center",
           alignItems: "center",
-          borderWidth: 1,
-          borderColor: "red",
+          // borderWidth: 1,
+          // borderColor: "red",
         }}
       >
         <View style={{ height: 32, width: 32 }}>
