@@ -11,7 +11,12 @@ import {
 } from "react-native";
 import { BoldText, RegularText, SemiBoldText } from "../components/text";
 import { MealGridColors } from "../assets/Values/Colors";
-import { intersectRating } from "../assets/index.icon";
+import {
+  cart_icon,
+  intersectRating,
+  navbar_icon,
+  search_icon,
+} from "../assets/index.icon";
 import { DGORegularText } from "../components/text/DelaGothicOne";
 
 /**
@@ -287,11 +292,16 @@ const HomeHeader = ({ navigation, width, style }) => {
       ]}
     >
       <TouchableOpacity
-        style={{ borderWidth: 1, borderColor: "red", height: 32, width: 32 }}
+        style={{
+          // borderWidth: 1,
+          // borderColor: "red",
+          height: 32,
+          width: 32,
+        }}
         onPress={() => navigation.openDrawer()}
       >
         <Image
-          source={null}
+          source={navbar_icon}
           style={{
             height: 32,
             width: 32,
@@ -323,16 +333,16 @@ const HomeHeader = ({ navigation, width, style }) => {
       >
         <View style={{ height: 32, width: 32 }}>
           <Image
-            source={null}
+            source={cart_icon}
             style={{
               height: 32,
               width: 32,
-              borderWidth: 1,
-              borderColor: "green",
+              // borderWidth: 1,
+              // borderColor: "green",
             }}
           />
 
-          <View
+          {/* <View
             style={{
               height: 8,
               width: 8,
@@ -341,7 +351,7 @@ const HomeHeader = ({ navigation, width, style }) => {
               marginTop: -28,
               marginLeft: 18,
             }}
-          />
+          /> */}
         </View>
       </TouchableOpacity>
     </View>
@@ -374,12 +384,12 @@ const SearchBar = ({ width, style }) => {
         ]}
       >
         <Image
-          source={null}
+          source={search_icon}
           style={{
             height: 26,
             width: 26,
-            borderWidth: 1,
-            borderColor: "red",
+            // borderWidth: 1,
+            // borderColor: "red",
           }}
         />
         <RegularText style={{ color: MealGridColors.gray_time }}>
