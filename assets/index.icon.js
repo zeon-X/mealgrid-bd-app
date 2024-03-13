@@ -4,6 +4,7 @@ import cart_icon from "./icons/cart.png";
 import navbar_icon from "./icons/navbar.png";
 import search_icon from "./icons/search.png";
 import close_icon from "./icons/close_cross.png";
+import close_round_icon from "./icons/close_round.png";
 import edit_icon from "./icons/edit.png";
 
 import address_icon from "./icons/address.png";
@@ -16,6 +17,7 @@ import settings_icon from "./icons/settings.png";
 import voucher_icon from "./icons/vouchers.png";
 export {
   intersectRating,
+  close_round_icon,
   cart_icon,
   navbar_icon,
   search_icon,

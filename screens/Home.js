@@ -279,50 +279,64 @@ const storyData = [
 export const Home = ({ navigation }) => {
   const { width, height } = Dimensions.get("window");
   return (
-    <ScrollView
+    <View
       style={{
         width: width,
         height: height,
         marginTop: StatusBar.currentHeight,
       }}
     >
-      <View style={{ backgroundColor: MealGridColors.primary }}>
-        <HomeHeader
+      <HomeHeader
+        width={width}
+        navigation={navigation}
+        style={{
+          paddingBottom: 20,
+          width: width,
+          paddingHorizontal: 24,
+          paddingTop: 24,
+          backgroundColor: MealGridColors.primary,
+        }}
+      />
+      <SearchBar
+        width={width}
+        style={{
+          paddingBottom: 16,
+          paddingHorizontal: 20,
+          backgroundColor: MealGridColors.primary,
+        }}
+      />
+      <ScrollView style={{}}>
+        <StoryBar
           width={width}
-          navigation={navigation}
           style={{
-            marginBottom: 20,
-            width: width,
-            paddingHorizontal: 24,
-            marginTop: 24,
+            paddingBottom: 32,
+            paddingTop: 18,
+            backgroundColor: MealGridColors.offWhite_2,
           }}
+          storyData={storyData}
         />
-        <SearchBar
+
+        <LoadVendor
           width={width}
-          style={{ marginBottom: 20, paddingHorizontal: 20 }}
+          style={{
+            paddingBottom: 32,
+            backgroundColor: MealGridColors.offWhite_2,
+          }}
+          caption={"Nearby meal provider"}
+          vendorData={vendorDataNearby}
         />
-      </View>
 
-      <StoryBar
-        width={width}
-        style={{ marginBottom: 32, marginTop: 18 }}
-        storyData={storyData}
-      />
-
-      <LoadVendor
-        width={width}
-        style={{ marginBottom: 32 }}
-        caption={"Nearby meal provider"}
-        vendorData={vendorDataNearby}
-      />
-
-      <LoadVendor
-        width={width}
-        style={{ marginBottom: 16 }}
-        caption={"Best meal provider in town"}
-        vendorData={vendorDataInTown}
-      />
-    </ScrollView>
+        <LoadVendor
+          width={width}
+          style={{
+            paddingBottom: 16,
+            backgroundColor: MealGridColors.offWhite_2,
+          }}
+          caption={"Best meal provider in town"}
+          vendorData={vendorDataInTown}
+        />
+      </ScrollView>
+    </View>
   );
 };
 

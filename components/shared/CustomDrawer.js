@@ -4,7 +4,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { BoldText, RegularText, SemiBoldText } from "../text";
+import { BoldText, RegularText } from "../text";
 import { MealGridColors } from "../../assets/values/Colors";
 import { DrawerNavData } from "../../assets/values/DrawerNavData";
 import { logout_icon } from "../../assets/index.icon";
@@ -57,7 +57,7 @@ export const CustomDrawer = (props) => {
                 color: MealGridColors.white,
               }}
             >
-              Refund account: BDT 280
+              mdshefatzeon@gmail.com
             </BoldText>
           </View>
         </View>
