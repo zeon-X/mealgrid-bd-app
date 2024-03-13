@@ -340,6 +340,234 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    package: [
+      {
+        package_name: "Basic",
+        sold: 20,
+        avarage_launch_price: 80,
+        avarage_dinner_price: 70,
+        menu: [
+          {
+            day_name: "Satday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Sunday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Monday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Tuesday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Wednesday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Thusday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Friday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+        ],
+      },
+      {
+        package_name: "Premium",
+        sold: 10,
+        avarage_launch_price: 80,
+        avarage_dinner_price: 80,
+        menu: [
+          {
+            day_name: "Satday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Sunday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Monday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Tuesday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Wednesday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Thusday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+          {
+            day_name: "Friday",
+            launch: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+            dinner: {
+              food: "Rice, Katla mas, Daal",
+              price: 80,
+              cover_img:
+                "https://static01.nyt.com/images/2018/02/21/dining/00RICEGUIDE8/00RICEGUIDE8-superJumbo.jpg",
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     shop_name: "Vojonbari",

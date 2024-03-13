@@ -69,7 +69,7 @@ export const SpecialModal = ({ visible, onRequestClose, route }) => {
           </View>
         </View>
         <ScrollView>
-          <Component shop_data={route?.shop_data} />
+          <Component data={route?.data} />
         </ScrollView>
       </View>
     </Modal>

@@ -34,8 +34,8 @@ import {
 
 export const Home = ({ navigation }) => {
   const { width, height } = Dimensions.get("window");
-  const [visible, setVisible] = useState(false);
 
+  const [visible, setVisible] = useState(false);
   const [route, setRoute] = useState(null);
   return (
     <View
@@ -89,7 +89,7 @@ export const Home = ({ navigation }) => {
               // title: item?.shop_name,
               title: "",
               children: Shop,
-              shop_data: item,
+              data: item,
             });
           }}
         />

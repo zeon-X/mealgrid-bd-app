@@ -6,17 +6,18 @@ import {
   add_outline_icon,
   clock_icon,
   fire_icon,
+  minus_outline_icon,
   star_outline_icon,
 } from "../assets/index.icon";
 import { FormSubmitButton } from "../components/button/FormSubmitButton";
+import { SpecialModal } from "../components/shared/SpecialModal";
+import { Cart } from "./Cart";
 
 /**
  * @author
  * @function Shop
  **/
-export const Shop = ({ shop_data }) => {
-  //   console.log("shop_data: ", shop_data);
-
+export const Shop = ({ data }) => {
   return (
     <View style={{ paddingVertical: 12 }}>
       <View
@@ -35,7 +36,7 @@ export const Shop = ({ shop_data }) => {
           }}
         >
           <Image
-            source={{ uri: shop_data?.logo }}
+            source={{ uri: data?.logo }}
             style={{
               height: 60,
               width: 60,
@@ -45,7 +46,7 @@ export const Shop = ({ shop_data }) => {
             }}
           />
           <BoldText style={{ fontSize: 20, maxWidth: "60%" }}>
-            {shop_data?.shop_name}
+            {data?.shop_name}
           </BoldText>
         </View>
 
@@ -66,7 +67,7 @@ export const Shop = ({ shop_data }) => {
               paddingLeft: 30,
             }}
           >
-            Top Restrurent | 1.2 km Away | Tk 34 Delivery | {shop_data?.address}
+            Top Restrurent | 1.2 km Away | Tk 34 Delivery | {data?.address}
           </RegularText>
           <TouchableOpacity style={{ padding: 2 }}>
             <BoldText style={{ fontSize: 13, color: MealGridColors.primary }}>
@@ -100,7 +101,7 @@ export const Shop = ({ shop_data }) => {
                 tintColor: MealGridColors.primary,
               }}
             />
-            <BoldText style={{ fontSize: 14 }}>{shop_data?.rating}</BoldText>
+            <BoldText style={{ fontSize: 14 }}>{data?.rating}</BoldText>
             <RegularText
               style={{ fontSize: 12, color: MealGridColors.gray_ignored }}
             >
@@ -140,9 +141,9 @@ export const Shop = ({ shop_data }) => {
               }}
             />
             <BoldText style={{ fontSize: 14 }}>
-              Delivery: Launch: {shop_data?.delivery?.launch}
+              Delivery: Launch: {data?.delivery?.launch}
               {" | Diner: "}
-              {shop_data?.delivery?.dinner}
+              {data?.delivery?.dinner}
             </BoldText>
           </View>
         </View>
@@ -185,7 +186,7 @@ export const Shop = ({ shop_data }) => {
           </View>
         </View>
 
-        {shop_data?.package?.map((pkg, ind) => {
+        {data?.package?.map((pkg, ind) => {
           return <PackageView pkg={pkg} key={ind} />;
         })}
       </View>
@@ -195,6 +196,8 @@ export const Shop = ({ shop_data }) => {
 
 const PackageView = ({ pkg }) => {
   const [isDetailView, setDetailView] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [route, setRoute] = useState(null);
   return (
     <View
       style={{
@@ -243,10 +246,10 @@ const PackageView = ({ pkg }) => {
             flexDirection: "row",
             justifyContent: "flex-end",
           }}
-          onPress={() => {}}
+          onPress={() => setDetailView(!isDetailView)}
         >
           <Image
-            source={add_outline_icon}
+            source={isDetailView ? minus_outline_icon : add_outline_icon}
             style={{
               height: 24,
               width: 24,
@@ -343,7 +346,15 @@ const PackageView = ({ pkg }) => {
             );
           })}
           <FormSubmitButton
-            onPress={null}
+            onPress={() => {
+              setVisible(true);
+              setRoute({
+                // title: item?.shop_name,
+                title: "",
+                children: Cart,
+                data: pkg,
+              });
+            }}
             btnText={"Go to plannig"}
             style={{
               marginTop: 12,
@@ -355,6 +366,15 @@ const PackageView = ({ pkg }) => {
           />
         </View>
       )}
+
+      <SpecialModal
+        visible={visible}
+        onRequestClose={() => {
+          setVisible(false);
+          setRoute(null);
+        }}
+        route={route}
+      />
     </View>
   );
 };
