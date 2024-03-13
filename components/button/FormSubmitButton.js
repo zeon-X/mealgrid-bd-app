@@ -7,7 +7,7 @@ import { MealGridColors } from "../../assets/values/Colors";
  * @_author Md. Shefat Zeon
  * @function FormSubmitButton
  **/
-export const FormSubmitButton = ({ onPress, btnText, style }) => {
+export const FormSubmitButton = ({ onPress, btnText, btnTextStyle, style }) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -24,7 +24,9 @@ export const FormSubmitButton = ({ onPress, btnText, style }) => {
         style,
       ]}
     >
-      <BoldText style={{ fontSize: 18, color: "#fff" }}>{btnText}</BoldText>
+      <BoldText style={{ fontSize: 18, color: "#fff", ...btnTextStyle }}>
+        {btnText}
+      </BoldText>
     </TouchableOpacity>
   );
 };
