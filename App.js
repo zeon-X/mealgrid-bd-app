@@ -14,6 +14,7 @@ import { Login } from "./screens/Login";
 import { OnBoardingScreen } from "./screens/OnBoardingScreen";
 import { Profile } from "./screens/Profile";
 import { MyTab } from "./screens/MyTab";
+import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,8 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
 );
 
 export default function App({ navigation }) {
+  const [loading, setLoading] = useState(false);
+  const [isFirstLaunch, setFirstLaunch] = useState(null);
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ flex: 1 }}>

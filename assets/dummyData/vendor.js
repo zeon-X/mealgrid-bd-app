@@ -1,5 +1,6 @@
 export const vendorDataNearby = [
   {
+    _id: "1",
     shop_name: "Niribili Hotel and Restrurent. Best In Rajshahi",
     rating: 2.4,
     location: {
@@ -19,7 +20,7 @@ export const vendorDataNearby = [
       launch: "2.00pm",
       dinner: "8.00pm",
     },
-    package: [
+    available_package: [
       {
         package_name: "Basic",
         sold: 20,
@@ -27,7 +28,7 @@ export const vendorDataNearby = [
         avarage_dinner_price: 70,
         menu: [
           {
-            day_name: "Satday",
+            day_name: "Saturday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -102,7 +103,7 @@ export const vendorDataNearby = [
             },
           },
           {
-            day_name: "Thusday",
+            day_name: "Thursday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -140,7 +141,7 @@ export const vendorDataNearby = [
         avarage_dinner_price: 80,
         menu: [
           {
-            day_name: "Satday",
+            day_name: "Saturday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -215,7 +216,7 @@ export const vendorDataNearby = [
             },
           },
           {
-            day_name: "Thusday",
+            day_name: "Thursday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -250,6 +251,7 @@ export const vendorDataNearby = [
   },
 
   {
+    _id: "2",
     shop_name: "Vorta Vat",
     rating: 4.2,
     location: {
@@ -268,6 +270,7 @@ export const vendorDataNearby = [
     },
   },
   {
+    _id: "3",
     shop_name: "Bangaliana",
     rating: 3.2,
     location: {
@@ -286,6 +289,7 @@ export const vendorDataNearby = [
     },
   },
   {
+    _id: "4",
     shop_name: "Kasem Food Corner",
     rating: 3.9,
     location: {
@@ -304,6 +308,7 @@ export const vendorDataNearby = [
     },
   },
   {
+    _id: "5",
     shop_name: "Otithi Hotel",
     rating: 4.8,
     location: {
@@ -324,6 +329,7 @@ export const vendorDataNearby = [
 ];
 export const vendorDataInTown = [
   {
+    _id: "1",
     shop_name: "Beltola Tong",
     rating: 3.2,
     location: {
@@ -340,7 +346,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
-    package: [
+    available_package: [
       {
         package_name: "Basic",
         sold: 20,
@@ -348,7 +354,7 @@ export const vendorDataInTown = [
         avarage_dinner_price: 70,
         menu: [
           {
-            day_name: "Satday",
+            day_name: "Saturday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -423,7 +429,7 @@ export const vendorDataInTown = [
             },
           },
           {
-            day_name: "Thusday",
+            day_name: "Thursday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -461,7 +467,7 @@ export const vendorDataInTown = [
         avarage_dinner_price: 80,
         menu: [
           {
-            day_name: "Satday",
+            day_name: "Saturday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -536,7 +542,7 @@ export const vendorDataInTown = [
             },
           },
           {
-            day_name: "Thusday",
+            day_name: "Thursday",
             launch: {
               food: "Rice, Katla mas, Daal",
               price: 80,
@@ -570,6 +576,7 @@ export const vendorDataInTown = [
     ],
   },
   {
+    _id: "2",
     shop_name: "Vojonbari",
     rating: 3.2,
     location: {
@@ -585,6 +592,7 @@ export const vendorDataInTown = [
     },
   },
   {
+    _id: "3",
     shop_name: "Banaliana",
     rating: 3.2,
     location: {
@@ -603,6 +611,7 @@ export const vendorDataInTown = [
     },
   },
   {
+    _id: "4",
     shop_name: "Vorta Vat",
     rating: 4.2,
     location: {
@@ -621,6 +630,7 @@ export const vendorDataInTown = [
     },
   },
   {
+    _id: "5",
     shop_name: "Niribili",
     rating: 2.4,
     location: {
@@ -639,6 +649,7 @@ export const vendorDataInTown = [
     },
   },
   {
+    _id: "6",
     shop_name: "Kasem Food Corner",
     rating: 3.9,
     location: {
@@ -657,6 +668,7 @@ export const vendorDataInTown = [
     },
   },
   {
+    _id: "7",
     shop_name: "Otithi Hotel",
     rating: 4.8,
     location: {

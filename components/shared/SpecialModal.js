@@ -7,7 +7,7 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { BoldText } from "../text";
+import { BoldText, RegularText } from "../text";
 import { left_arrow_icon } from "../../assets/index.icon";
 import { MealGridColors } from "../../assets/values/Colors";
 
@@ -55,17 +55,23 @@ export const SpecialModal = ({ visible, onRequestClose, route }) => {
           </TouchableOpacity>
 
           <View
-            style={{
-              width: "100%",
-              flexDirection: "row",
-              justifyContent: "center",
-              alignItems: "center",
-              marginLeft: -60,
-              // borderWidth: 1,
-              // borderColor: "red",
-            }}
+            style={
+              {
+                // flexDirection: "row",
+                // justifyContent: "center",
+                // alignItems: "center",
+                // marginLeft: -60,
+                // borderWidth: 1,
+                // borderColor: "red",
+              }
+            }
           >
-            <BoldText style={{ fontSize: 18 }}>{route?.title}</BoldText>
+            <BoldText style={{ fontSize: 18 }}>{route?.page_name}</BoldText>
+            <RegularText
+              style={{ fontSize: 12, color: MealGridColors.gray_ignored }}
+            >
+              {route?.title}
+            </RegularText>
           </View>
         </View>
         <ScrollView>

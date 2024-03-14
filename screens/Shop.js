@@ -18,6 +18,10 @@ import { Cart } from "./Cart";
  * @function Shop
  **/
 export const Shop = ({ data }) => {
+  const { available_package, ...rest } = data;
+  const shop_data = rest;
+
+  // console.log(shop_data);
   return (
     <View style={{ paddingVertical: 12 }}>
       <View
@@ -186,15 +190,15 @@ export const Shop = ({ data }) => {
           </View>
         </View>
 
-        {data?.package?.map((pkg, ind) => {
-          return <PackageView pkg={pkg} key={ind} />;
+        {data?.available_package?.map((pkg, ind) => {
+          return <PackageView pkg={pkg} key={ind} shop_data={shop_data} />;
         })}
       </View>
     </View>
   );
 };
 
-const PackageView = ({ pkg }) => {
+const PackageView = ({ pkg, shop_data }) => {
   const [isDetailView, setDetailView] = useState(false);
   const [visible, setVisible] = useState(false);
   const [route, setRoute] = useState(null);
@@ -350,9 +354,10 @@ const PackageView = ({ pkg }) => {
               setVisible(true);
               setRoute({
                 // title: item?.shop_name,
-                title: "",
+                page_name: "Cart",
+                title: shop_data?.name,
                 children: Cart,
-                data: pkg,
+                data: { selected_package: pkg, shop_data: shop_data },
               });
             }}
             btnText={"Go to plannig"}
