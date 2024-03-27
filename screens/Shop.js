@@ -11,7 +11,10 @@ import {
 } from "../assets/index.icon";
 import { FormSubmitButton } from "../components/button/FormSubmitButton";
 import { SpecialModal } from "../components/shared/SpecialModal";
+
+import { useDispatch } from "react-redux";
 import { Cart } from "./Cart";
+import { resetMDItems } from "../redux/actions";
 
 /**
  * @author
@@ -199,6 +202,7 @@ export const Shop = ({ data }) => {
 };
 
 const PackageView = ({ pkg, shop_data }) => {
+  const dispatch = useDispatch();
   const [isDetailView, setDetailView] = useState(false);
   const [visible, setVisible] = useState(false);
   const [route, setRoute] = useState(null);
@@ -355,7 +359,7 @@ const PackageView = ({ pkg, shop_data }) => {
               setRoute({
                 // title: item?.shop_name,
                 page_name: "Cart",
-                title: shop_data?.name,
+                title: shop_data?.shop_name,
                 children: Cart,
                 data: { selected_package: pkg, shop_data: shop_data },
               });
@@ -375,6 +379,7 @@ const PackageView = ({ pkg, shop_data }) => {
       <SpecialModal
         visible={visible}
         onRequestClose={() => {
+          dispatch(resetMDItems());
           setVisible(false);
           setRoute(null);
         }}

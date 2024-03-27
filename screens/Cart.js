@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Image, TouchableOpacity, View } from "react-native";
+import { Image, View, TouchableOpacity } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { BoldText, RegularText, SemiBoldText } from "../components/text";
 import { MealGridColors } from "../assets/values/Colors";
 import * as Font from "expo-font";
 import { SS_Reg } from "../assets/fonts";
-import { top_restrurent_icon } from "../assets/index.icon";
+import {
+  checkbox_off_icon,
+  checkbox_on_icon,
+  top_restrurent_icon,
+} from "../assets/index.icon";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setNewMDItems, updateMDOrderItems } from "../redux/actions";
 
 /**
  * @author
@@ -13,21 +20,20 @@ import { top_restrurent_icon } from "../assets/index.icon";
  **/
 
 export const Cart = ({ data }) => {
-  const [markedDates, setMarkedDates] = useState({});
-  const { selected_package, shop_data } = data;
-  // console.log("shop_data: ", shop_data);
-  // console.log("selected_package: ", selected_package);
-
+  const mdoState = useSelector((state) => state?.mdo);
+  console.log("mdoState: ", mdoState);
   return (
-    <View style={{}}>
-      <DateSelect markedDates={markedDates} setMarkedDates={setMarkedDates} />
+    <View style={{ marginBottom: 24 }}>
+      <DateSelect mdoState={mdoState} menu={data?.selected_package?.menu} />
 
-      <CustomizePlan markedDates={markedDates} menu={selected_package?.menu} />
+      <CustomizePlan menu={data?.selected_package?.menu} mdoState={mdoState} />
+      <BillingInfo mdoState={mdoState} />
     </View>
   );
 };
 
-const DateSelect = ({ markedDates, setMarkedDates }) => {
+const DateSelect = ({ mdoState, menu }) => {
+  const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     Font.loadAsync({
@@ -52,34 +58,6 @@ const DateSelect = ({ markedDates, setMarkedDates }) => {
   let today_date = today.toISOString().slice(0, 10);
   let future_date = futureDate.toISOString().slice(0, 10);
 
-  const sortAndStoreDate = (newDate) => {
-    // Check if the new date already exists in the state
-    if (markedDates[newDate]) {
-      // Remove the date from the state
-      const { [newDate]: removedDate, ...remainingDates } = markedDates;
-      setMarkedDates(remainingDates);
-    } else {
-      // Combine the new date with existing markedDates
-      const combinedDates = {
-        ...markedDates,
-        [newDate]: { color: "#70d7c7", textColor: "white" },
-      };
-
-      // Sort the dates in ascending order
-      const sortedDates = Object.keys(combinedDates).sort((a, b) => {
-        return new Date(a) - new Date(b);
-      });
-
-      // Create a new object with sorted dates and their corresponding colors/textColors
-      const formattedDates = sortedDates.reduce((acc, date) => {
-        acc[date] = combinedDates[date];
-        return acc;
-      }, {});
-
-      // Update the state with sorted and formatted dates
-      setMarkedDates(formattedDates);
-    }
-  };
   return (
     <View style={{ padding: 20 }}>
       <View
@@ -108,27 +86,28 @@ const DateSelect = ({ markedDates, setMarkedDates }) => {
               tintColor: MealGridColors.primary,
             }}
           />
-
-          <RegularText
-            style={{ fontSize: 14, color: MealGridColors.gray_ignored }}
-          >
+          <BoldText style={{ fontSize: 16, color: MealGridColors.primary }}>
+            Customize your plan!
+          </BoldText>
+          <BoldText style={{ fontSize: 16, color: MealGridColors.black }}>
             Select upto 30 days!
-          </RegularText>
+          </BoldText>
         </View>
-        <BoldText style={{ fontSize: 14, color: MealGridColors.primary }}>
-          Customize your plan!
-        </BoldText>
+        <BoldText
+          style={{ fontSize: 14, color: MealGridColors.primary }}
+        ></BoldText>
       </View>
       <Calendar
         style={{
           borderRadius: 12,
-          padding: 17,
+          padding: 8,
           marginTop: 6,
         }}
         theme={{
           backgroundColor: MealGridColors.white,
           arrowColor: MealGridColors.gray_ignored,
-          monthTextColor: MealGridColors.gray_ignored,
+          monthTextColor: MealGridColors.black,
+          textMonthFontWeight: 800,
           indicatorColor: MealGridColors.primary,
           textDayFontSize: 10,
           textMonthFontSize: 12,
@@ -139,28 +118,35 @@ const DateSelect = ({ markedDates, setMarkedDates }) => {
         }}
         minDate={today_date}
         maxDate={future_date}
-        markingType={"period"}
-        markedDates={markedDates}
+        markingType="period"
+        markedDates={mdoState?.markedDates}
         onDayPress={(day) => {
-          // console.log("selected day", day);
-          sortAndStoreDate(day?.dateString);
+          console.log("selected day", day);
+          dispatch(
+            setNewMDItems(
+              day?.dateString,
+              mdoState?.markedDates,
+              mdoState?.markedDatesOrder,
+              menu
+            )
+          );
         }}
       />
     </View>
   );
 };
 
-const CustomizePlan = ({ markedDates, menu }) => {
-  const dates = getDateAndDayNameAndMenu(markedDates, menu);
-  console.log(dates);
+const CustomizePlan = ({ menu, mdoState }) => {
+  const dispatch = useDispatch();
   return (
     <View
       style={{
         marginHorizontal: 20,
         backgroundColor: MealGridColors.white,
         borderRadius: 8,
-        paddingHorizontal: 4,
+        paddingHorizontal: 14,
         paddingVertical: 20,
+        marginBottom: 12,
       }}
     >
       <View
@@ -168,14 +154,13 @@ const CustomizePlan = ({ markedDates, menu }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: 8,
         }}
       >
         <View
           style={{
             width: "30%",
-            flexDirection: "row",
-            justifyContent: "center",
+            // flexDirection: "row",
+            // justifyContent: "center",
           }}
         >
           <SemiBoldText
@@ -189,7 +174,7 @@ const CustomizePlan = ({ markedDates, menu }) => {
         </View>
         <View
           style={{
-            width: "40%",
+            width: "50%",
             flexDirection: "row",
             justifyContent: "center",
           }}
@@ -198,7 +183,6 @@ const CustomizePlan = ({ markedDates, menu }) => {
             style={{
               fontSize: 14,
               color: MealGridColors.black,
-              width: "40%",
             }}
           >
             Meal
@@ -206,9 +190,9 @@ const CustomizePlan = ({ markedDates, menu }) => {
         </View>
         <View
           style={{
-            width: "30%",
+            width: "20%",
             flexDirection: "row",
-            justifyContent: "center",
+            justifyContent: "flex-end",
           }}
         >
           <SemiBoldText
@@ -222,97 +206,271 @@ const CustomizePlan = ({ markedDates, menu }) => {
         </View>
       </View>
 
-      {dates?.map((d, ind) => {
-        return (
-          <View
-            key={ind}
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 8,
-            }}
-          >
+      <View style={{ flexDirection: "column", gap: 32, marginTop: 24 }}>
+        {mdoState?.markedDatesOrder?.map((d, ind) => {
+          // Get the day name from the Date object
+          const dayName = new Date(d?.date).toLocaleDateString("en-US", {
+            weekday: "long",
+          });
+
+          // Find the menu object corresponding to the dayName
+          const menuObject = menu.find((item) => item.day_name === dayName);
+
+          // console.log(menuObject);
+          return (
             <View
+              key={ind}
               style={{
-                width: "30%",
                 flexDirection: "row",
-                justifyContent: "center",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              <RegularText
+              <View
                 style={{
-                  fontSize: 14,
-                  color: MealGridColors.black,
+                  width: "30%",
+                  // flexDirection: "row",
+                  // justifyContent: "center",
                 }}
               >
-                {d?.date}
-              </RegularText>
-            </View>
-            <View
-              style={{
-                width: "40%",
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              <RegularText
+                <View>
+                  <RegularText
+                    style={{
+                      fontSize: 14,
+                      color: MealGridColors.black,
+                    }}
+                  >
+                    {d?.date}
+                  </RegularText>
+                  <RegularText
+                    style={{
+                      fontSize: 12,
+                      color: MealGridColors.gray_ignored,
+                    }}
+                  >
+                    {menuObject?.day_name}
+                  </RegularText>
+                </View>
+              </View>
+              <View
                 style={{
-                  fontSize: 14,
-                  color: MealGridColors.black,
-                  width: "40%",
+                  width: "50%",
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: 12,
                 }}
               >
-                {d?.dayName}
-              </RegularText>
-            </View>
-            <View
-              style={{
-                width: "30%",
-                flexDirection: "row",
-                justifyContent: "center",
-              }}
-            >
-              <RegularText
+                {/* <View> */}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 4,
+                    // marginBottom: 2,
+                    // borderWidth: 1,
+                    // borderColor: "red",
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => {
+                      let tem = mdoState?.markedDatesOrder;
+                      tem[ind].order.launch = !tem[ind].order.launch;
+                      dispatch(updateMDOrderItems(tem, menu));
+                    }}
+                  >
+                    <Image
+                      source={
+                        d?.order?.launch === true
+                          ? checkbox_on_icon
+                          : checkbox_off_icon
+                      }
+                      style={{
+                        height: 24,
+                        width: 24,
+                        tintColor: d?.order?.launch
+                          ? MealGridColors.primary
+                          : MealGridColors.bg_all_purpose,
+                        // borderWidth: 1,
+                        // borderColor: "red",
+                      }}
+                    />
+                  </TouchableOpacity>
+
+                  <RegularText
+                    style={{
+                      fontSize: 14,
+                      color: MealGridColors.black,
+                      // width: "60%",
+                      // borderWidth: 1,
+                      // borderColor: "red",
+                    }}
+                  >
+                    Launch
+                    {/* {menuObject?.launch?.food} */}
+                  </RegularText>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    // justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 4,
+                  }}
+                >
+                  <TouchableOpacity
+                    onPress={() => {
+                      let tem = mdoState?.markedDatesOrder;
+                      tem[ind].order.dinner = !tem[ind].order.dinner;
+                      dispatch(updateMDOrderItems(tem, menu));
+                    }}
+                  >
+                    <Image
+                      source={
+                        d?.order?.dinner === true
+                          ? checkbox_on_icon
+                          : checkbox_off_icon
+                      }
+                      style={{
+                        height: 24,
+                        width: 24,
+                        tintColor: d?.order?.dinner
+                          ? MealGridColors.primary
+                          : MealGridColors.bg_all_purpose,
+                      }}
+                    />
+                  </TouchableOpacity>
+
+                  <RegularText
+                    style={{
+                      fontSize: 14,
+                      color: MealGridColors.black,
+                      // width: "60%",
+                    }}
+                  >
+                    Dinner
+                    {/* {menuObject?.dinner?.food} */}
+                  </RegularText>
+                </View>
+                {/* </View> */}
+              </View>
+              <View
                 style={{
-                  fontSize: 14,
-                  color: MealGridColors.black,
+                  width: "20%",
+                  flexDirection: "row",
+                  // justifyContent: "center",
+                  justifyContent: "flex-end",
+                  // alignItems: "center",
                 }}
               >
-                Cost
-              </RegularText>
+                <View>
+                  <RegularText
+                    style={{
+                      fontSize: 14,
+                      color: MealGridColors.black,
+                    }}
+                  >
+                    TK{" "}
+                    {(d?.order?.launch ? menuObject?.launch?.price : 0) +
+                      (d?.order?.dinner ? menuObject?.dinner?.price : 0)}
+                  </RegularText>
+                  <RegularText
+                    style={{
+                      fontSize: 12,
+                      color: MealGridColors.gray_ignored,
+                    }}
+                  >
+                    Fee Tk{" "}
+                    {(d?.order?.launch ? 2 : 0) + (d?.order?.dinner ? 2 : 0)}
+                  </RegularText>
+                </View>
+              </View>
             </View>
-          </View>
-        );
-      })}
+          );
+        })}
+      </View>
     </View>
   );
 };
 
-const getDateAndDayNameAndMenu = (markedDates, menu) => {
-  // console.log(menu);
-  const dateAndDayNameAndMenuArray = [];
+const BillingInfo = ({ mdoState }) => {
+  return (
+    <View
+      style={{
+        marginHorizontal: 20,
+        backgroundColor: MealGridColors.white,
+        borderRadius: 8,
+        paddingHorizontal: 14,
+        paddingVertical: 20,
+      }}
+    >
+      <BoldText style={{ fontSize: 24, marginBottom: 12 }}>
+        Billing Info
+      </BoldText>
 
-  // Loop through each date in the markedDates object
-  for (const date in markedDates) {
-    if (markedDates.hasOwnProperty(date)) {
-      // Convert the date string to a Date object
-      const currentDate = new Date(date);
+      <View style={{ flexDirection: "column", gap: 8 }}>
+        <BillingRow
+          fieldName={"Subtotal"}
+          value={mdoState?.bill?.subtotal || 0}
+          sign={0}
+        />
+        <BillingRow
+          fieldName={"Delivery Charge"}
+          value={mdoState?.bill?.deliveryCharge || 0}
+          sign={1}
+        />
+        <BillingRow
+          fieldName={"Platform Fee"}
+          value={mdoState?.bill?.platformCharge || 0}
+          sign={1}
+        />
+        <BillingRow
+          fieldName={"VAT"}
+          value={mdoState?.bill?.tax || 0}
+          sign={1}
+        />
+        <BillingRow
+          fieldName={"Discount"}
+          value={mdoState?.bill?.discount || 0}
+          sign={-1}
+        />
 
-      // Get the day name from the Date object
-      const dayName = currentDate.toLocaleDateString("en-US", {
-        weekday: "long",
-      });
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            borderTopWidth: 2,
+            borderTopColor: MealGridColors.btnbG,
+            marginTop: 8,
+            paddingTop: 12,
+          }}
+        >
+          <RegularText style={{ fontSize: 24 }}>Total:</RegularText>
+          <RegularText style={{ fontSize: 24 }}>
+            BDT {mdoState?.bill?.total || 0}
+          </RegularText>
+        </View>
+      </View>
+    </View>
+  );
+};
 
-      // Find the menu object corresponding to the dayName
-      const menuObject = menu.find((item) => item.day_name === dayName);
-
-      // Add the { date, dayName, menu } object to the array if menuObject is found
-      if (menuObject) {
-        dateAndDayNameAndMenuArray.push({ date, menu: menuObject });
-      }
-    }
-  }
-
-  return dateAndDayNameAndMenuArray;
+const BillingRow = ({ fieldName, value, sign }) => {
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+      }}
+    >
+      <RegularText style={{ color: MealGridColors.gray_ignored }}>
+        {fieldName}:
+      </RegularText>
+      <RegularText style={{}}>
+        {sign > 0 ? "+ " : sign < 0 ? "- " : ""}BDT {value}
+      </RegularText>
+    </View>
+  );
 };
