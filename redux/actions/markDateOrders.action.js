@@ -120,7 +120,12 @@ const sortAndStoreDate = (newDate, markedDates, markedDatesOrderData, menu) => {
     // Combine the new date with existing markedDates
     const combinedDates = {
       ...markedDates,
-      [newDate]: { color: "#FB6D3B", textColor: "white" },
+      [newDate]: {
+        color: "#FB6D3B",
+        textColor: "white",
+        endingDay: true,
+        startingDay: true,
+      },
     };
 
     // Sort the dates in ascending order

@@ -13,6 +13,9 @@ import {
 
 import { useDispatch, useSelector } from "react-redux";
 import { setNewMDItems, updateMDOrderItems } from "../redux/actions";
+import { FormSubmitButton } from "../components/button/FormSubmitButton";
+import { SpecialModal } from "../components/shared/SpecialModal";
+import { CheckOut } from "./CheckOut";
 
 /**
  * @author
@@ -21,13 +24,19 @@ import { setNewMDItems, updateMDOrderItems } from "../redux/actions";
 
 export const Cart = ({ data }) => {
   const mdoState = useSelector((state) => state?.mdo);
-  console.log("mdoState: ", mdoState);
+  // console.log("mdoState: ", mdoState);
   return (
     <View style={{ marginBottom: 24 }}>
       <DateSelect mdoState={mdoState} menu={data?.selected_package?.menu} />
 
-      <CustomizePlan menu={data?.selected_package?.menu} mdoState={mdoState} />
+      {mdoState?.markedDatesOrder?.length > 0 && (
+        <CustomizePlan
+          menu={data?.selected_package?.menu}
+          mdoState={mdoState}
+        />
+      )}
       <BillingInfo mdoState={mdoState} />
+      {mdoState?.markedDatesOrder?.length > 0 && <CheckOutButton />}
     </View>
   );
 };
@@ -107,9 +116,10 @@ const DateSelect = ({ mdoState, menu }) => {
           backgroundColor: MealGridColors.white,
           arrowColor: MealGridColors.gray_ignored,
           monthTextColor: MealGridColors.black,
+
           textMonthFontWeight: 800,
           indicatorColor: MealGridColors.primary,
-          textDayFontSize: 10,
+          textDayFontSize: 8,
           textMonthFontSize: 12,
           textDayHeaderFontSize: 10,
           textDayFontFamily: loaded ? "SofiaSansReg" : null,
@@ -121,7 +131,7 @@ const DateSelect = ({ mdoState, menu }) => {
         markingType="period"
         markedDates={mdoState?.markedDates}
         onDayPress={(day) => {
-          console.log("selected day", day);
+          // console.log("selected day", day);
           dispatch(
             setNewMDItems(
               day?.dateString,
@@ -286,10 +296,10 @@ const CustomizePlan = ({ menu, mdoState }) => {
                           : checkbox_off_icon
                       }
                       style={{
-                        height: 24,
-                        width: 24,
+                        height: 20,
+                        width: 20,
                         tintColor: d?.order?.launch
-                          ? MealGridColors.primary
+                          ? MealGridColors.gray_ignored
                           : MealGridColors.bg_all_purpose,
                         // borderWidth: 1,
                         // borderColor: "red",
@@ -332,10 +342,10 @@ const CustomizePlan = ({ menu, mdoState }) => {
                           : checkbox_off_icon
                       }
                       style={{
-                        height: 24,
-                        width: 24,
+                        height: 20,
+                        width: 20,
                         tintColor: d?.order?.dinner
-                          ? MealGridColors.primary
+                          ? MealGridColors.gray_ignored
                           : MealGridColors.bg_all_purpose,
                       }}
                     />
@@ -471,6 +481,49 @@ const BillingRow = ({ fieldName, value, sign }) => {
       <RegularText style={{}}>
         {sign > 0 ? "+ " : sign < 0 ? "- " : ""}BDT {value}
       </RegularText>
+    </View>
+  );
+};
+
+const CheckOutButton = () => {
+  const [visible, setVisible] = useState(false);
+  const [route, setRoute] = useState(null);
+  return (
+    <View
+      style={{
+        marginHorizontal: 20,
+        borderRadius: 8,
+        paddingHorizontal: 14,
+        paddingVertical: 20,
+      }}
+    >
+      <FormSubmitButton
+        onPress={() => {
+          setVisible(true);
+          setRoute({
+            // title: item?.shop_name,
+            page_name: "Order",
+            title: "Place your first order!",
+            children: CheckOut,
+            // data: { selected_package: pkg, shop_data: shop_data },
+          });
+        }}
+        btnText={"Proceed CheckOut"}
+        style={{
+          marginTop: 12,
+          backgroundColor: MealGridColors.primary,
+        }}
+        btnTextStyle={{ fontSize: 14, color: MealGridColors.white }}
+      />
+
+      <SpecialModal
+        visible={visible}
+        onRequestClose={() => {
+          setVisible(false);
+          setRoute(null);
+        }}
+        route={route}
+      />
     </View>
   );
 };
