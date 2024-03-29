@@ -7,14 +7,12 @@ import {
   Platform,
   ScrollView,
 } from "react-native";
-import { BoldText, RegularText } from "../text";
-import { left_arrow_icon } from "../../assets/index.icon";
+import { BoldText } from "../text";
+import { close_icon } from "../../assets/index.icon";
 import { MealGridColors } from "../../assets/values/Colors";
 
-export const SpecialModal = ({ visible, onRequestClose, route }) => {
+export const GeneralPopupModal = ({ visible, onRequestClose, route }) => {
   const Component = route?.children || (() => null);
-
-  //   console.log("route: ", route);
 
   return (
     <Modal
@@ -45,7 +43,7 @@ export const SpecialModal = ({ visible, onRequestClose, route }) => {
             onPress={onRequestClose}
           >
             <Image
-              source={left_arrow_icon}
+              source={close_icon}
               style={{
                 height: 26,
                 width: 26,
@@ -55,27 +53,21 @@ export const SpecialModal = ({ visible, onRequestClose, route }) => {
           </TouchableOpacity>
 
           <View
-            style={
-              {
-                // flexDirection: "row",
-                // justifyContent: "center",
-                // alignItems: "center",
-                // marginLeft: -60,
-                // borderWidth: 1,
-                // borderColor: "red",
-              }
-            }
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              marginLeft: -60,
+              // borderWidth: 1,
+              // borderColor: "red",
+            }}
           >
-            <BoldText style={{ fontSize: 18 }}>{route?.page_name}</BoldText>
-            <RegularText
-              style={{ fontSize: 12, color: MealGridColors.gray_ignored }}
-            >
-              {route?.title}
-            </RegularText>
+            <BoldText style={{ fontSize: 18 }}>{route?.title}</BoldText>
           </View>
         </View>
         <ScrollView>
-          <Component data={route?.data} />
+          <Component />
         </ScrollView>
       </View>
     </Modal>

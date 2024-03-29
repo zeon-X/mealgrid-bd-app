@@ -8,6 +8,8 @@ import { SS_Reg } from "../assets/fonts";
 import {
   checkbox_off_icon,
   checkbox_on_icon,
+  close_round_icon,
+  edit_icon,
   top_restrurent_icon,
 } from "../assets/index.icon";
 
@@ -15,7 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setNewMDItems, updateMDOrderItems } from "../redux/actions";
 import { FormSubmitButton } from "../components/button/FormSubmitButton";
 import { SpecialModal } from "../components/shared/SpecialModal";
-import { CheckOut } from "./CheckOut";
+import { InfoField } from "../components/input/InfoField";
+import { GeneralPopupModal } from "../components/shared/GeneralPopupModal";
+import { OrderPlacedResponse } from "./OrderPlacedResponse";
 
 /**
  * @author
@@ -25,18 +29,35 @@ import { CheckOut } from "./CheckOut";
 export const Cart = ({ data }) => {
   const mdoState = useSelector((state) => state?.mdo);
   // console.log("mdoState: ", mdoState);
+  const [formData, setFormData] = useState({
+    name: "Md. Shefat Zeon",
+    paymentMethod: "💵  Cash",
+    mobile: "+8801402199906",
+    address:
+      "3rd floor N apartment, Bholahut palace, Baliaukur choto bot tola mor, Rajshahi",
+    deliveryInstruchtion: "",
+  });
+
+  const handleChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   return (
     <View style={{ marginBottom: 24 }}>
       <DateSelect mdoState={mdoState} menu={data?.selected_package?.menu} />
+      <CustomizePlan menu={data?.selected_package?.menu} mdoState={mdoState} />
+      {/* {mdoState?.markedDatesOrder?.length > 0 && (
+       
+      )} */}
 
-      {mdoState?.markedDatesOrder?.length > 0 && (
-        <CustomizePlan
-          menu={data?.selected_package?.menu}
-          mdoState={mdoState}
-        />
-      )}
+      <DeliveryAddress handleChange={handleChange} formData={formData} />
+      <PaymentMethod handleChange={handleChange} formData={formData} />
       <BillingInfo mdoState={mdoState} />
-      {mdoState?.markedDatesOrder?.length > 0 && <CheckOutButton />}
+      {mdoState?.markedDatesOrder?.length > 0 && (
+        <CheckOutButton title={data?.shop_data?.shop_name} />
+      )}
     </View>
   );
 };
@@ -68,7 +89,7 @@ const DateSelect = ({ mdoState, menu }) => {
   let future_date = futureDate.toISOString().slice(0, 10);
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={{ paddingHorizontal: 20, paddingBottom: 20, paddingTop: 12 }}>
       <View
         style={{
           flexDirection: "row",
@@ -79,32 +100,9 @@ const DateSelect = ({ mdoState, menu }) => {
           paddingHorizontal: 8,
         }}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 6,
-            alignItems: "center",
-            maxWidth: "80%",
-          }}
-        >
-          <Image
-            source={top_restrurent_icon}
-            style={{
-              height: 24,
-              width: 24,
-              tintColor: MealGridColors.primary,
-            }}
-          />
-          <BoldText style={{ fontSize: 16, color: MealGridColors.primary }}>
-            Customize your plan!
-          </BoldText>
-          <BoldText style={{ fontSize: 16, color: MealGridColors.black }}>
-            Select upto 30 days!
-          </BoldText>
-        </View>
-        <BoldText
-          style={{ fontSize: 14, color: MealGridColors.primary }}
-        ></BoldText>
+        <SemiBoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+          Select upto next 30 days
+        </SemiBoldText>
       </View>
       <Calendar
         style={{
@@ -152,10 +150,6 @@ const CustomizePlan = ({ menu, mdoState }) => {
     <View
       style={{
         marginHorizontal: 20,
-        backgroundColor: MealGridColors.white,
-        borderRadius: 8,
-        paddingHorizontal: 14,
-        paddingVertical: 20,
         marginBottom: 12,
       }}
     >
@@ -164,240 +158,264 @@ const CustomizePlan = ({ menu, mdoState }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          marginBottom: 10,
+          paddingHorizontal: 8,
+        }}
+      >
+        <SemiBoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+          Customize Your Plan
+        </SemiBoldText>
+        <View />
+      </View>
+
+      <View
+        style={{
+          backgroundColor: MealGridColors.white,
+          paddingHorizontal: 14,
+          borderRadius: 8,
+          paddingVertical: 20,
         }}
       >
         <View
           style={{
-            width: "30%",
-            // flexDirection: "row",
-            // justifyContent: "center",
-          }}
-        >
-          <SemiBoldText
-            style={{
-              fontSize: 14,
-              color: MealGridColors.black,
-            }}
-          >
-            Selected Date
-          </SemiBoldText>
-        </View>
-        <View
-          style={{
-            width: "50%",
             flexDirection: "row",
-            justifyContent: "center",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          <SemiBoldText
+          <View
             style={{
-              fontSize: 14,
-              color: MealGridColors.black,
+              width: "30%",
+              // flexDirection: "row",
+              // justifyContent: "center",
             }}
           >
-            Meal
-          </SemiBoldText>
-        </View>
-        <View
-          style={{
-            width: "20%",
-            flexDirection: "row",
-            justifyContent: "flex-end",
-          }}
-        >
-          <SemiBoldText
-            style={{
-              fontSize: 14,
-              color: MealGridColors.black,
-            }}
-          >
-            Cost
-          </SemiBoldText>
-        </View>
-      </View>
-
-      <View style={{ flexDirection: "column", gap: 32, marginTop: 24 }}>
-        {mdoState?.markedDatesOrder?.map((d, ind) => {
-          // Get the day name from the Date object
-          const dayName = new Date(d?.date).toLocaleDateString("en-US", {
-            weekday: "long",
-          });
-
-          // Find the menu object corresponding to the dayName
-          const menuObject = menu.find((item) => item.day_name === dayName);
-
-          // console.log(menuObject);
-          return (
-            <View
-              key={ind}
+            <SemiBoldText
               style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
+                fontSize: 14,
+                color: MealGridColors.black,
               }}
             >
+              Selected Date
+            </SemiBoldText>
+          </View>
+          <View
+            style={{
+              width: "50%",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <SemiBoldText
+              style={{
+                fontSize: 14,
+                color: MealGridColors.black,
+              }}
+            >
+              Meal
+            </SemiBoldText>
+          </View>
+          <View
+            style={{
+              width: "20%",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <SemiBoldText
+              style={{
+                fontSize: 14,
+                color: MealGridColors.black,
+              }}
+            >
+              Cost
+            </SemiBoldText>
+          </View>
+        </View>
+
+        <View style={{ flexDirection: "column", gap: 32, marginTop: 24 }}>
+          {mdoState?.markedDatesOrder?.map((d, ind) => {
+            // Get the day name from the Date object
+            const dayName = new Date(d?.date).toLocaleDateString("en-US", {
+              weekday: "long",
+            });
+
+            // Find the menu object corresponding to the dayName
+            const menuObject = menu.find((item) => item.day_name === dayName);
+
+            // console.log(menuObject);
+            return (
               <View
+                key={ind}
                 style={{
-                  width: "30%",
-                  // flexDirection: "row",
-                  // justifyContent: "center",
-                }}
-              >
-                <View>
-                  <RegularText
-                    style={{
-                      fontSize: 14,
-                      color: MealGridColors.black,
-                    }}
-                  >
-                    {d?.date}
-                  </RegularText>
-                  <RegularText
-                    style={{
-                      fontSize: 12,
-                      color: MealGridColors.gray_ignored,
-                    }}
-                  >
-                    {menuObject?.day_name}
-                  </RegularText>
-                </View>
-              </View>
-              <View
-                style={{
-                  width: "50%",
                   flexDirection: "row",
-                  justifyContent: "center",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                  gap: 12,
                 }}
               >
-                {/* <View> */}
                 <View
                   style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: 4,
-                    // marginBottom: 2,
-                    // borderWidth: 1,
-                    // borderColor: "red",
+                    width: "30%",
+                    // flexDirection: "row",
+                    // justifyContent: "center",
                   }}
                 >
-                  <TouchableOpacity
-                    onPress={() => {
-                      let tem = mdoState?.markedDatesOrder;
-                      tem[ind].order.launch = !tem[ind].order.launch;
-                      dispatch(updateMDOrderItems(tem, menu));
-                    }}
-                  >
-                    <Image
-                      source={
-                        d?.order?.launch === true
-                          ? checkbox_on_icon
-                          : checkbox_off_icon
-                      }
+                  <View>
+                    <RegularText
                       style={{
-                        height: 20,
-                        width: 20,
-                        tintColor: d?.order?.launch
-                          ? MealGridColors.gray_ignored
-                          : MealGridColors.bg_all_purpose,
-                        // borderWidth: 1,
-                        // borderColor: "red",
+                        fontSize: 14,
+                        color: MealGridColors.black,
                       }}
-                    />
-                  </TouchableOpacity>
-
-                  <RegularText
+                    >
+                      {d?.date}
+                    </RegularText>
+                    <RegularText
+                      style={{
+                        fontSize: 12,
+                        color: MealGridColors.gray_ignored,
+                      }}
+                    >
+                      {menuObject?.day_name}
+                    </RegularText>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    width: "50%",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    gap: 12,
+                  }}
+                >
+                  {/* <View> */}
+                  <View
                     style={{
-                      fontSize: 14,
-                      color: MealGridColors.black,
-                      // width: "60%",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      gap: 4,
+                      // marginBottom: 2,
                       // borderWidth: 1,
                       // borderColor: "red",
                     }}
                   >
-                    Launch
-                    {/* {menuObject?.launch?.food} */}
-                  </RegularText>
+                    <TouchableOpacity
+                      onPress={() => {
+                        let tem = mdoState?.markedDatesOrder;
+                        tem[ind].order.launch = !tem[ind].order.launch;
+                        dispatch(updateMDOrderItems(tem, menu));
+                      }}
+                    >
+                      <Image
+                        source={
+                          d?.order?.launch === true
+                            ? checkbox_on_icon
+                            : checkbox_off_icon
+                        }
+                        style={{
+                          height: 20,
+                          width: 20,
+                          tintColor: d?.order?.launch
+                            ? MealGridColors.gray_ignored
+                            : MealGridColors.bg_all_purpose,
+                          // borderWidth: 1,
+                          // borderColor: "red",
+                        }}
+                      />
+                    </TouchableOpacity>
+
+                    <RegularText
+                      style={{
+                        fontSize: 14,
+                        color: MealGridColors.black,
+                        // width: "60%",
+                        // borderWidth: 1,
+                        // borderColor: "red",
+                      }}
+                    >
+                      Launch
+                      {/* {menuObject?.launch?.food} */}
+                    </RegularText>
+                  </View>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      // justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: 4,
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => {
+                        let tem = mdoState?.markedDatesOrder;
+                        tem[ind].order.dinner = !tem[ind].order.dinner;
+                        dispatch(updateMDOrderItems(tem, menu));
+                      }}
+                    >
+                      <Image
+                        source={
+                          d?.order?.dinner === true
+                            ? checkbox_on_icon
+                            : checkbox_off_icon
+                        }
+                        style={{
+                          height: 20,
+                          width: 20,
+                          tintColor: d?.order?.dinner
+                            ? MealGridColors.gray_ignored
+                            : MealGridColors.bg_all_purpose,
+                        }}
+                      />
+                    </TouchableOpacity>
+
+                    <RegularText
+                      style={{
+                        fontSize: 14,
+                        color: MealGridColors.black,
+                        // width: "60%",
+                      }}
+                    >
+                      Dinner
+                      {/* {menuObject?.dinner?.food} */}
+                    </RegularText>
+                  </View>
+                  {/* </View> */}
                 </View>
                 <View
                   style={{
+                    width: "20%",
                     flexDirection: "row",
-                    // justifyContent: "space-between",
-                    alignItems: "center",
-                    gap: 4,
+                    // justifyContent: "center",
+                    justifyContent: "flex-end",
+                    // alignItems: "center",
                   }}
                 >
-                  <TouchableOpacity
-                    onPress={() => {
-                      let tem = mdoState?.markedDatesOrder;
-                      tem[ind].order.dinner = !tem[ind].order.dinner;
-                      dispatch(updateMDOrderItems(tem, menu));
-                    }}
-                  >
-                    <Image
-                      source={
-                        d?.order?.dinner === true
-                          ? checkbox_on_icon
-                          : checkbox_off_icon
-                      }
+                  <View>
+                    <RegularText
                       style={{
-                        height: 20,
-                        width: 20,
-                        tintColor: d?.order?.dinner
-                          ? MealGridColors.gray_ignored
-                          : MealGridColors.bg_all_purpose,
+                        fontSize: 14,
+                        color: MealGridColors.black,
                       }}
-                    />
-                  </TouchableOpacity>
-
-                  <RegularText
-                    style={{
-                      fontSize: 14,
-                      color: MealGridColors.black,
-                      // width: "60%",
-                    }}
-                  >
-                    Dinner
-                    {/* {menuObject?.dinner?.food} */}
-                  </RegularText>
-                </View>
-                {/* </View> */}
-              </View>
-              <View
-                style={{
-                  width: "20%",
-                  flexDirection: "row",
-                  // justifyContent: "center",
-                  justifyContent: "flex-end",
-                  // alignItems: "center",
-                }}
-              >
-                <View>
-                  <RegularText
-                    style={{
-                      fontSize: 14,
-                      color: MealGridColors.black,
-                    }}
-                  >
-                    TK{" "}
-                    {(d?.order?.launch ? menuObject?.launch?.price : 0) +
-                      (d?.order?.dinner ? menuObject?.dinner?.price : 0)}
-                  </RegularText>
-                  <RegularText
-                    style={{
-                      fontSize: 12,
-                      color: MealGridColors.gray_ignored,
-                    }}
-                  >
-                    Fee Tk{" "}
-                    {(d?.order?.launch ? 2 : 0) + (d?.order?.dinner ? 2 : 0)}
-                  </RegularText>
+                    >
+                      TK{" "}
+                      {(d?.order?.launch ? menuObject?.launch?.price : 0) +
+                        (d?.order?.dinner ? menuObject?.dinner?.price : 0)}
+                    </RegularText>
+                    <RegularText
+                      style={{
+                        fontSize: 12,
+                        color: MealGridColors.gray_ignored,
+                      }}
+                    >
+                      Fee Tk{" "}
+                      {(d?.order?.launch ? 2 : 0) + (d?.order?.dinner ? 2 : 0)}
+                    </RegularText>
+                  </View>
                 </View>
               </View>
-            </View>
-          );
-        })}
+            );
+          })}
+        </View>
       </View>
     </View>
   );
@@ -485,7 +503,143 @@ const BillingRow = ({ fieldName, value, sign }) => {
   );
 };
 
-const CheckOutButton = () => {
+const DeliveryAddress = ({ handleChange, formData }) => {
+  const [editEnable, setEditEnable] = useState(false);
+  return (
+    <View style={{ paddingHorizontal: 20, marginVertical: 12 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 4,
+          paddingHorizontal: 8,
+        }}
+      >
+        <SemiBoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+          Delivery Address
+        </SemiBoldText>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 6,
+            // borderWidth: 1,
+            // borderColor: "green",
+          }}
+          onPress={() => setEditEnable(!editEnable)}
+        >
+          {editEnable ? (
+            <BoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+              Close
+            </BoldText>
+          ) : (
+            <Image
+              source={editEnable ? close_round_icon : edit_icon}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: MealGridColors.primary,
+              }}
+            />
+          )}
+        </TouchableOpacity>
+      </View>
+
+      <View style={{ backgroundColor: MealGridColors.white, borderRadius: 8 }}>
+        <InfoField
+          labelText={"Address"}
+          labelStyle={{ color: MealGridColors.gray_ignored }}
+          onChangeText={(text) => handleChange("address", text)}
+          value={formData?.address}
+          disabled={editEnable}
+          multiline={true}
+          inputStyle={{
+            height: 72,
+            borderWidth: 1,
+            borderColor: MealGridColors.bg_all_purpose,
+          }}
+          containerStyle={{ marginBottom: 0, paddingBottom: 0 }}
+        />
+        <InfoField
+          labelText={"Delivery Instruction"}
+          labelStyle={{ color: MealGridColors.gray_ignored }}
+          onChangeText={(text) => handleChange("deliveryInstruchtion", text)}
+          value={formData?.deliveryInstruchtion}
+          disabled={editEnable}
+          multiline={true}
+          inputStyle={{
+            height: 72,
+            borderWidth: 1,
+            borderColor: MealGridColors.bg_all_purpose,
+          }}
+          containerStyle={{}}
+        />
+      </View>
+    </View>
+  );
+};
+
+const PaymentMethod = ({ handleChange, formData }) => {
+  const [editEnable, setEditEnable] = useState(false);
+  return (
+    <View style={{ paddingHorizontal: 20, marginVertical: 4 }}>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginBottom: 4,
+          paddingHorizontal: 8,
+        }}
+      >
+        <SemiBoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+          Payment Method
+        </SemiBoldText>
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 6,
+            // borderWidth: 1,
+            // borderColor: "green",
+          }}
+          onPress={() => setEditEnable(!editEnable)}
+        >
+          {editEnable ? (
+            <BoldText style={{ fontSize: 18, color: MealGridColors.primary }}>
+              Close
+            </BoldText>
+          ) : (
+            <Image
+              source={editEnable ? close_round_icon : edit_icon}
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: MealGridColors.primary,
+              }}
+            />
+          )}
+        </TouchableOpacity>
+      </View>
+
+      <View>
+        <InfoField
+          // labelText={"Select Payment Method"}
+          // labelStyle={{ color: MealGridColors.gray_ignored }}
+          onChangeText={(text) => handleChange("paymentMethod", text)}
+          value={formData?.paymentMethod}
+          disabled={false}
+          multiline={true}
+        />
+      </View>
+    </View>
+  );
+};
+
+const CheckOutButton = ({ title }) => {
   const [visible, setVisible] = useState(false);
   const [route, setRoute] = useState(null);
   return (
@@ -501,14 +655,11 @@ const CheckOutButton = () => {
         onPress={() => {
           setVisible(true);
           setRoute({
-            // title: item?.shop_name,
-            page_name: "Order",
-            title: "Place your first order!",
-            children: CheckOut,
-            // data: { selected_package: pkg, shop_data: shop_data },
+            children: OrderPlacedResponse,
+            title: "Order Processing..",
           });
         }}
-        btnText={"Proceed CheckOut"}
+        btnText={"Place Order"}
         style={{
           marginTop: 12,
           backgroundColor: MealGridColors.primary,
@@ -516,7 +667,7 @@ const CheckOutButton = () => {
         btnTextStyle={{ fontSize: 14, color: MealGridColors.white }}
       />
 
-      <SpecialModal
+      <GeneralPopupModal
         visible={visible}
         onRequestClose={() => {
           setVisible(false);

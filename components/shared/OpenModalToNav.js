@@ -25,7 +25,7 @@ export const OpenModalToNav = ({ visible, onRequestClose, route }) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            marginTop: Platform?.OS === "ios" ? 32 : 0,
+            marginTop: Platform?.OS === "ios" ? 34 : 0,
             // backgroundColor: "#fff",
           }}
         >

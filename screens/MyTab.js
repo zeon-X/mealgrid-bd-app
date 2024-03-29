@@ -1,7 +1,6 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Home } from "./Home";
-import { Profile } from "./Profile";
 import { CustomDrawer } from "../components/shared/CustomDrawer";
 
 /**

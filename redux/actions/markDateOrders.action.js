@@ -163,6 +163,10 @@ const sortAndStoreDate = (newDate, markedDates, markedDatesOrderData, menu) => {
 const calcBill = (markedDatesOrderData, menu) => {
   let subtotal = 0;
   let how_many_meals = 0;
+  let tax = 0;
+  let discount = 0;
+  let platformCharge = 0;
+  let deliveryCharge = 0;
 
   markedDatesOrderData?.map((x) => {
     const dayName = new Date(x?.date).toLocaleDateString("en-US", {
@@ -170,7 +174,7 @@ const calcBill = (markedDatesOrderData, menu) => {
     });
 
     // Find the menu object corresponding to the dayName
-    const menuObject = menu.find((item) => item.day_name === dayName);
+    const menuObject = menu?.find((item) => item.day_name === dayName);
 
     // console.log(menuObject);
     subtotal +=
@@ -180,18 +184,23 @@ const calcBill = (markedDatesOrderData, menu) => {
     how_many_meals += (x?.order?.dinner ? 1 : 0) + (x?.order?.launch ? 1 : 0);
   });
 
+  // console.log(how_many_meals);
+  platformCharge = how_many_meals * 2;
+  deliveryCharge = how_many_meals * 10;
+  tax = subtotal * 0.025;
+
   return {
     subtotal: subtotal.toFixed(2),
-    platformCharge: (how_many_meals * 2).toFixed(2),
-    deliveryCharge: (how_many_meals * 10).toFixed(2),
-    tax: (subtotal * 0.025).toFixed(2),
-    discount: 0,
+    platformCharge: platformCharge.toFixed(2),
+    deliveryCharge: deliveryCharge.toFixed(2),
+    tax: tax.toFixed(2),
+    discount: discount,
     total: (
       subtotal +
-      how_many_meals * 2 +
-      how_many_meals * 10 +
-      subtotal * 0.25 -
-      0
+      deliveryCharge +
+      platformCharge +
+      tax -
+      discount
     ).toFixed(2),
   };
 };

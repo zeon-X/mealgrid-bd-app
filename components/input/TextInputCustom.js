@@ -17,6 +17,7 @@ export const TextInputCustom = ({
   style,
   inputStyle,
   disabled,
+  multiline,
 }) => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -45,6 +46,7 @@ export const TextInputCustom = ({
           },
           { ...inputStyle },
         ]}
+        multiline={multiline || false}
         onChangeText={onChangeText}
         value={value}
         placeholder={placeholder || null}

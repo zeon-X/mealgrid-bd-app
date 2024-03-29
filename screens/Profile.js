@@ -5,6 +5,7 @@ import { MealGridColors } from "../assets/values/Colors";
 import { TextInputCustom } from "../components/input/TextInputCustom";
 import { close_round_icon, edit_icon } from "../assets/index.icon";
 import { FormSubmitButton } from "../components/button/FormSubmitButton";
+import { InfoField } from "../components/input/InfoField";
 
 /**
  * @author
@@ -117,54 +118,6 @@ export const Profile = (props) => {
           />
         )}
       </View>
-    </View>
-  );
-};
-
-const InfoField = ({
-  labelText,
-  value,
-  onChangeText,
-  disabled,
-  inputStyle,
-}) => {
-  return (
-    <View
-      style={[
-        {
-          backgroundColor: MealGridColors.white,
-          borderRadius: 8,
-          paddingTop: 18,
-          paddingBottom: 8,
-          marginBottom: 10,
-        },
-        {
-          shadowColor: "#171717",
-          shadowOffset: { width: -2, height: 4 },
-          shadowOpacity: 0.01,
-          shadowRadius: 2,
-          elevation: 10,
-        },
-      ]}
-    >
-      <RegularText style={{ fontSize: 14, marginLeft: 14 }}>
-        {labelText}
-      </RegularText>
-      <TextInputCustom
-        value={value}
-        onChangeText={onChangeText}
-        style={{
-          backgroundColor: MealGridColors.white,
-        }}
-        inputStyle={{
-          height: 44,
-          backgroundColor: disabled
-            ? MealGridColors.offWhite_2
-            : MealGridColors.white,
-          ...inputStyle,
-        }}
-        disabled={disabled}
-      />
     </View>
   );
 };

@@ -358,7 +358,7 @@ const PackageView = ({ pkg, shop_data }) => {
               setVisible(true);
               setRoute({
                 // title: item?.shop_name,
-                page_name: "Cart",
+                page_name: "Plan & Checkout",
                 title: shop_data?.shop_name,
                 children: Cart,
                 data: { selected_package: pkg, shop_data: shop_data },
