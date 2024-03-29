@@ -3,7 +3,7 @@ export const vendorDataNearby = [
     _id: "1",
     shop_name: "Niribili Hotel and Restrurent. Best In Rajshahi",
     rating: 2.4,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -254,7 +254,7 @@ export const vendorDataNearby = [
     _id: "2",
     shop_name: "Vorta Vat",
     rating: 4.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -274,7 +274,7 @@ export const vendorDataNearby = [
     _id: "3",
     shop_name: "Bangaliana",
     rating: 3.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -294,7 +294,7 @@ export const vendorDataNearby = [
     _id: "4",
     shop_name: "Kasem Food Corner",
     rating: 3.9,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -314,7 +314,7 @@ export const vendorDataNearby = [
     _id: "5",
     shop_name: "Otithi Hotel",
     rating: 4.8,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -336,7 +336,7 @@ export const vendorDataInTown = [
     _id: "1",
     shop_name: "Beltola Tong",
     rating: 3.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -583,7 +583,7 @@ export const vendorDataInTown = [
     _id: "2",
     shop_name: "Vojonbari",
     rating: 3.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -600,7 +600,7 @@ export const vendorDataInTown = [
     _id: "3",
     shop_name: "Banaliana",
     rating: 3.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -620,7 +620,7 @@ export const vendorDataInTown = [
     _id: "4",
     shop_name: "Vorta Vat",
     rating: 4.2,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -640,7 +640,7 @@ export const vendorDataInTown = [
     _id: "5",
     shop_name: "Niribili",
     rating: 2.4,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -660,7 +660,7 @@ export const vendorDataInTown = [
     _id: "6",
     shop_name: "Kasem Food Corner",
     rating: 3.9,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
@@ -680,7 +680,7 @@ export const vendorDataInTown = [
     _id: "7",
     shop_name: "Otithi Hotel",
     rating: 4.8,
-    location: {
+    maplocation: {
       longitude: null,
       latitude: null,
     },
