@@ -268,6 +268,7 @@ export const vendorDataNearby = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "3",
@@ -287,6 +288,7 @@ export const vendorDataNearby = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "4",
@@ -306,6 +308,7 @@ export const vendorDataNearby = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "5",
@@ -325,6 +328,7 @@ export const vendorDataNearby = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
 ];
 export const vendorDataInTown = [
@@ -590,6 +594,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "3",
@@ -609,6 +614,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "4",
@@ -628,6 +634,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "5",
@@ -647,6 +654,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "6",
@@ -666,6 +674,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
   {
     _id: "7",
@@ -685,6 +694,7 @@ export const vendorDataInTown = [
       launch: "1.00pm",
       dinner: "8.00pm",
     },
+    available_package: [],
   },
 ];
 
