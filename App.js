@@ -3,9 +3,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaView, View, StatusBar } from "react-native";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./redux/store";
-import * as Font from "expo-font";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Toast from "react-native-toast-message";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 

@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mealgrid-client",
-    "slug": "mealgrid-client",
+    "name": "mealgrid-user",
+    "slug": "mealgrid-user",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,16 +15,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.aleehatech.mealgriduser"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.aleehatech.mealgriduser"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c33338bc-bb2b-4c03-9908-91077ea8356a"
+      }
     }
   }
 }
