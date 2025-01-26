@@ -310,7 +310,8 @@ const StoryBar = ({ width, style, storyData }) => {
   );
 };
 
-const LoadVendor = ({ width, style, caption, vendorData, onPress }) => {
+const LoadVendor = ({ style, caption, vendorData, onPress }) => {
+  const { height, width } = Dimensions.get("window");
   return (
     <View style={[{}, style]}>
       <BoldText
@@ -346,7 +347,7 @@ const LoadVendor = ({ width, style, caption, vendorData, onPress }) => {
                   style={[
                     {
                       height: 158,
-                      width: 234,
+                      width: width * 0.68 || 234,
 
                       marginBottom: 6,
                       flexDirection: "row",
@@ -425,14 +426,14 @@ const LoadVendor = ({ width, style, caption, vendorData, onPress }) => {
                   paddingHorizontal: 6,
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  maxWidth: 234,
+                  maxWidth: width * 0.68 || 234,
                   // borderWidth: 1,
                   // borderColor: "red",
                 }}
               >
                 <View
                   style={{
-                    maxWidth: "45%",
+                    maxWidth: "50%",
                     // borderWidth: 1,
                     // borderColor: "red",
                   }}
@@ -451,7 +452,7 @@ const LoadVendor = ({ width, style, caption, vendorData, onPress }) => {
                   style={{
                     flexDirection: "column",
                     alignItems: "flex-end",
-                    maxWidth: "55%",
+                    maxWidth: "50%",
                     // borderWidth: 1,
                     // borderColor: "red",
                   }}

@@ -12,6 +12,7 @@ import { OnBoardingScreen } from "./screens/OnBoardingScreen";
 import { Profile } from "./screens/Profile";
 import { MyTab } from "./screens/MyTab";
 import { useState } from "react";
+import { MealGridColors } from "./assets/values/Colors";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,7 +30,10 @@ export default function App({ navigation }) {
   return (
     <Provider store={store}>
       <GestureHandlerRootView style={{ flex: 1 }}>
-        <MyStatusBar backgroundColor="#535353" barStyle="light-content" />
+        <MyStatusBar
+          backgroundColor={MealGridColors.primary}
+          barStyle="light-content"
+        />
 
         <NavigationContainer>
           <Stack.Navigator>

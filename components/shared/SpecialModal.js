@@ -6,6 +6,7 @@ import {
   Modal,
   Platform,
   ScrollView,
+  StatusBar,
 } from "react-native";
 import { BoldText, RegularText } from "../text";
 import { left_arrow_icon } from "../../assets/index.icon";
@@ -22,12 +23,23 @@ export const SpecialModal = ({ visible, onRequestClose, route }) => {
       onRequestClose={onRequestClose}
       animationType="slide"
     >
-      <View style={{ flex: 1, backgroundColor: MealGridColors.offWhite_2 }}>
+      <View
+        style={{
+          height: StatusBar?.currentHeight || 34,
+          backgroundColor: MealGridColors.primary,
+        }}
+      />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: MealGridColors.offWhite_2,
+        }}
+      >
         <View
           style={{
             flexDirection: "row",
             alignItems: "center",
-            marginTop: Platform?.OS === "ios" ? 34 : 0,
+            // marginTop: Platform?.OS === "ios" ? 34 : 0,
             backgroundColor: "#fff",
             borderBottomWidth: 1,
             borderBottomColor: MealGridColors.bg_all_purpose,

@@ -26,7 +26,7 @@ export const Shop = ({ data }) => {
 
   // console.log(shop_data);
   return (
-    <View style={{ paddingVertical: 12 }}>
+    <View style={{ paddingVertical: 12, backgroundColor: "" }}>
       <View
         style={{
           paddingHorizontal: 20,
